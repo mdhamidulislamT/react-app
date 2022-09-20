@@ -1,0 +1,22 @@
+.heading{
+    color: red;
+    font-size: 3rem;
+    font-weight: 900;
+    text-decoration: underline;
+}
+
+.para{
+    color: blue;
+    font-size: 2rem;
+    font-style: italic;
+}
+.reg{
+    background-color: beige;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.input{
+    padding: 7px;
+    margin-top: 15px;
+}

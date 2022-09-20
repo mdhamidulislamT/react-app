@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
+import Card from "./components/Card";
+import Register from "./components/register";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const logindata ={id:1, name:"Md Hamidul Islam", uName:"Admin"};
+
+const App=()=>{
+    return(
+        <>
+        <Card txt="this is test props from card" txt2="this is for distructure"/>
+        <Card  />
+        <Register logindata={logindata}/>
+        </>
+    );
 }
 
 export default App;
