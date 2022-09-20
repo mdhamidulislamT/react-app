@@ -1,9 +1,9 @@
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 
 const Contact = () => {
   return (
     <div>
-       <Nav />
+       <Navbar />
       <h1>Contact Page</h1>
       <p>
         In previous versions of React Router you had to order your routes a

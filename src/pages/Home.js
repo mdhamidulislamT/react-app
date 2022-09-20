@@ -1,10 +1,10 @@
-import Nav from "../components/Nav";
+import Navbar from "../components/Navbar";
 
 
 const Home = () => {
   return (
     <div>
-      <Nav />
+      <Navbar />
       <h1>Home Page</h1>
       <p>
         In previous versions of React Router you had to order your routes a
