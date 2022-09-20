@@ -1,10 +1,11 @@
 import Nav from "../components/Nav";
 
-const Contact = () => {
+
+const Home = () => {
   return (
     <div>
-       <Nav />
-      <h1>Contact Page</h1>
+      <Nav />
+      <h1>Home Page</h1>
       <p>
         In previous versions of React Router you had to order your routes a
         certain way to get the right one to render when multiple routes matched
@@ -16,4 +17,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Home;
