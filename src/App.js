@@ -9,6 +9,8 @@ import PageNotFound from "./pages/PageNotFound";
 import HomeTwo from "./pages/HomeTwo";
 import AboutMe from "./pages/AboutMe";
 import ContactUs from "./pages/ContactUs";
+import ContactForm from "./pages/ContactForm";
+import BookList from "./pages/BookList";
 
 const logindata = { id: 1, name: "Md Hamidul Islam", uName: "Admin" };
 
@@ -22,6 +24,8 @@ const App = () => {
         <Route path="/hometwo"  element={<HomeTwo />} />
         <Route path="/about-me"  element={<AboutMe />} />
         <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/book-list" element={<BookList />} />
+        <Route path="/contact-form" element={<ContactForm />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
