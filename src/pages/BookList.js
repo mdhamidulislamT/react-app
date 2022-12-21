@@ -4,9 +4,12 @@ import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import NavbarTwo from "../components/NavbarTwo";
+import Form from "react-bootstrap/Form";
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
+  const [bookName, setBookname] = useState('');
+  const [description, setDescription] = useState('');
 
   useEffect(() => {
     fetchBooks();
@@ -22,13 +25,28 @@ const BookList = () => {
 
   // Edit
   const fetchBook = async (id) => {
+    const isConfirm = await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Fetch Book!",
+    }).then((result) => {
+      return result.isConfirmed;
+    });
+
+    if (!isConfirm) {
+      return;
+    }
+
     await axios
       .get(`http://localhost:8000/api/books/${id}`)
       .then(({ data }) => {
-        alert(JSON.stringify(data));
-        //const { title, description } = data.product;
-        //setTitle(title);
-        //setDescription(description);
+        const { name, description } = data.data.attributes;
+        setBookname(name)
+        setDescription(description)
       })
       .catch(({ response: { data } }) => {
         Swal.fire({
@@ -86,6 +104,31 @@ const BookList = () => {
               Create Product
             </Link>
           </div>
+
+          <Form>
+            <div className="row">
+              <div className="col-5">
+                <Form.Group className="mb-3" controlId="BookName">
+                  <Form.Label> Book Name </Form.Label>
+                  <Form.Control type="text"  placeholder="Enter Book Name"  value={bookName} onChange={(event)=>{ setBookname(event.target.value) }} />
+                </Form.Group>
+              </div>
+              <div className="col-5">
+                <Form.Group className="mb-3" controlId="Description">
+                  <Form.Label> Description </Form.Label>
+                  <Form.Control type="text"  placeholder="Enter Description" value={description} onChange={(event)=>{ setDescription(event.target.value) }} />
+                </Form.Group>
+              </div>
+              <div className="col-2">
+                <Button
+                  variant="success"
+                  className="mt-4 btn-lg float-end" >
+                  Update Book
+                </Button>
+              </div>
+            </div>
+          </Form>
+
           <div className="col-12">
             <div className="card card-body">
               <div className="table-responsive">
@@ -107,17 +150,18 @@ const BookList = () => {
                           <td>{row.attributes.publication_year}</td>
                           <td>
                             <Button
-                              variant="success" className="mr-2"
+                              variant="success"
+                              className="mr-2"
                               onClick={() => fetchBook(row.id)}
                             >
-                              Edit 
+                              Edit
                             </Button>
 
                             <Button
                               variant="danger"
                               onClick={() => deleteBook(row.id)}
                             >
-                               Delete
+                              Delete
                             </Button>
                           </td>
                         </tr>
