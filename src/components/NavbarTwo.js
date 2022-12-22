@@ -33,6 +33,11 @@ const NavbarTwo = () => {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
+              <Nav.Link eventKey="link-1" href="/login">
+              Log in
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
               <Nav.Link eventKey="link-2">Link</Nav.Link>
             </Nav.Item>
           </Nav>

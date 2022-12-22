@@ -8,8 +8,8 @@ import Form from "react-bootstrap/Form";
 
 const BookList = () => {
   const [books, setBooks] = useState([]);
-  const [bookName, setBookname] = useState('');
-  const [description, setDescription] = useState('');
+  const [bookName, setBookname] = useState("");
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     fetchBooks();
@@ -45,8 +45,8 @@ const BookList = () => {
       .get(`http://localhost:8000/api/books/${id}`)
       .then(({ data }) => {
         const { name, description } = data.data.attributes;
-        setBookname(name)
-        setDescription(description)
+        setBookname(name);
+        setDescription(description);
       })
       .catch(({ response: { data } }) => {
         Swal.fire({
@@ -110,19 +110,31 @@ const BookList = () => {
               <div className="col-5">
                 <Form.Group className="mb-3" controlId="BookName">
                   <Form.Label> Book Name </Form.Label>
-                  <Form.Control type="text"  placeholder="Enter Book Name"  value={bookName} onChange={(event)=>{ setBookname(event.target.value) }} />
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Book Name"
+                    value={bookName}
+                    onChange={(event) => {
+                      setBookname(event.target.value);
+                    }}
+                  />
                 </Form.Group>
               </div>
               <div className="col-5">
                 <Form.Group className="mb-3" controlId="Description">
                   <Form.Label> Description </Form.Label>
-                  <Form.Control type="text"  placeholder="Enter Description" value={description} onChange={(event)=>{ setDescription(event.target.value) }} />
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter Description"
+                    value={description}
+                    onChange={(event) => {
+                      setDescription(event.target.value);
+                    }}
+                  />
                 </Form.Group>
               </div>
               <div className="col-2">
-                <Button
-                  variant="success"
-                  className="mt-4 btn-lg float-end" >
+                <Button variant="success" className="mt-4 btn-lg float-end">
                   Update Book
                 </Button>
               </div>

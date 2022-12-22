@@ -11,6 +11,7 @@ import AboutMe from "./pages/AboutMe";
 import ContactUs from "./pages/ContactUs";
 import ContactForm from "./pages/ContactForm";
 import BookList from "./pages/BookList";
+import Login from "./pages/Login";
 
 const logindata = { id: 1, name: "Md Hamidul Islam", uName: "Admin" };
 
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/about-me"  element={<AboutMe />} />
         <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/book-list" element={<BookList />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/contact-form" element={<ContactForm />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
