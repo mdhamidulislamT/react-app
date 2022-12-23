@@ -11,6 +11,8 @@ const BookList = () => {
   const [bookName, setBookname] = useState("");
   const [description, setDescription] = useState("");
 
+
+
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -56,6 +58,36 @@ const BookList = () => {
       });
   };
 
+  // Create Book
+  const createProduct = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", bookName);
+    formData.append("description", description);
+
+    await axios
+      .post(`http://localhost:8000/api/books`, formData)
+      .then(({ data }) => {
+        Swal.fire({
+          icon: "success",
+          text: data.message,
+        });
+        setBookname("");
+        setDescription("");
+        fetchBooks();
+      })
+      .catch(({ response }) => {
+        if (response.status === 422) {
+        } else {
+          Swal.fire({
+            text: response.data.message,
+            icon: "error",
+          });
+        }
+      });
+  };
+
   // Delete
   const deleteBook = async (id) => {
     const isConfirm = await Swal.fire({
@@ -96,16 +128,7 @@ const BookList = () => {
       <NavbarTwo />
       <div className="container">
         <div className="row">
-          <div className="col-12">
-            <Link
-              className="btn btn-primary mb-2 float-end"
-              to={"/product/create"}
-            >
-              Create Product
-            </Link>
-          </div>
-
-          <Form>
+          <Form onSubmit={createProduct}>
             <div className="row">
               <div className="col-5">
                 <Form.Group className="mb-3" controlId="BookName">
@@ -134,8 +157,12 @@ const BookList = () => {
                 </Form.Group>
               </div>
               <div className="col-2">
-                <Button variant="success" className="mt-4 btn-lg float-end">
-                  Update Book
+                <Button
+                  variant="success"
+                  className="btn btn-success mt-4 btn-lg"
+                  type="submit"
+                >
+                   Save Book
                 </Button>
               </div>
             </div>
